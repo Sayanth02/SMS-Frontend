@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStudents } from "../../../redux/slices/studentSlice";
 import Input from "../reUsableComponents/Input";
-import { Card } from "@mui/material";
+import Card from '../reUsableComponents/Card'
 import Button from "../reUsableComponents/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchFees, updateFee } from "../../../redux/slices/feesSlice";
