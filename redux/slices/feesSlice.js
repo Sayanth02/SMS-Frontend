@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Fetch fees
 export const fetchFees = createAsyncThunk(
     'fees/fetchFees',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/fees/getAllFees', {
+            const response = await axios.get(`${API_URL}/api/fees/getAllFees`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -28,7 +29,7 @@ export const createFee = createAsyncThunk(
     'fees/createFee',
     async (feeData, thunkAPI) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/fees/addFee', feeData, {
+            const response = await axios.post(`${API_URL}/api/fees/addFee`, feeData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -50,7 +51,7 @@ export const updateFee = createAsyncThunk(
         console.log(feeData);
         
         try {
-            const response = await axios.put(`http://localhost:5000/api/fees/updateFee/${id}`, feeData, {
+            const response = await axios.put(`${API_URL}/api/fees/updateFee/${id}`, feeData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -70,7 +71,7 @@ export const deleteFee = createAsyncThunk(
     'fees/deleteFee',
     async (id, thunkAPI) => {
         try {
-            await axios.delete(`http://localhost:5000/api/fees/deleteFee/${id}`, {
+            await axios.delete(`${API_URL}/api/fees/deleteFee/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

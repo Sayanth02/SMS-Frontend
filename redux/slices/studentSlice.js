@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Fetch students
 export const fetchStudents = createAsyncThunk(
     'student/fetchStudents',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/student//getAllStudents', {
+            const response = await axios.get(`${API_URL}/api/student/getAllStudents`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -29,7 +30,7 @@ export const createStudent = createAsyncThunk(
     'student/createStudent',
     async (studentData, thunkAPI) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/student/addStudent', studentData, {
+            const response = await axios.post(`${API_URL}/api/student/addStudent`, studentData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -51,7 +52,7 @@ export const updateStudent = createAsyncThunk(
     'student/updateStudent',
     async ({ id, studentData }, thunkAPI) => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/student/updateStudent/${id}`, studentData, {
+            const response = await axios.put(`${API_URL}/api/student/updateStudent/${id}`, studentData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -72,7 +73,7 @@ export const deleteStudent = createAsyncThunk(
     'student/deleteStudent',
     async (id, thunkAPI) => {
         try {
-            await axios.delete(`http://localhost:5000/api/student/deleteStudent/${id}`, {
+            await axios.delete(`${API_URL}/api/student/deleteStudent/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, asyncThunkCreator } from '@reduxjs/toolkit';
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL;
 
 // creating a user
 export const createUser = createAsyncThunk(
@@ -8,7 +9,7 @@ export const createUser = createAsyncThunk(
         try {
             console.log(userData);
 
-            const response = await axios.post('http://localhost:5000/api/user/addUser', userData, {
+            const response = await axios.post(`${API_URL}/api/user/addUser`, userData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -29,7 +30,7 @@ export const fetchUsers = createAsyncThunk(
     'user/fetchUsers',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/user/getAllUser', {
+            const response = await axios.get(`${API_URL}/api/user/getAllUser`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -51,7 +52,7 @@ export const updateUser = createAsyncThunk(
     'user/updateUser',
     async ({ id, userData }, thunkAPI) => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/user/updateUser/${id}`, userData, {
+            const response = await axios.put(`${API_URL}/api/user/updateUser/${id}`, userData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -72,7 +73,7 @@ export const deleteUser = createAsyncThunk(
     'user/deleteUser',
     async (id, thunkAPI) => {
         try {
-            const response = await axios.delete(`http://localhost:5000/api/user/deleteUser/${id}`, {
+            const response = await axios.delete(`${API_URL}/api/user/deleteUser/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

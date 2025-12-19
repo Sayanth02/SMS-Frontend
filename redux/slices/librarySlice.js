@@ -6,7 +6,7 @@ export const fetchLibrary = createAsyncThunk(
     'library/fetchLibrary',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/library/getLibrary', {
+            const response = await axios.get(`${API_URL}/api/library/getLibrary`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -27,7 +27,7 @@ export const createLibrary = createAsyncThunk(
     'library/createLibrary',
     async (libraryData, thunkAPI) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/library/addLibrary', libraryData, {
+            const response = await axios.post(`${API_URL}/api/library/addLibrary`, libraryData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -47,7 +47,7 @@ export const updateLibrary = createAsyncThunk(
     'library/updateLibrary',
     async ({ id, libraryData }, thunkAPI) => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/library/updateLibrary/${id}`, libraryData, {
+            const response = await axios.put(`${API_URL}/api/library/updateLibrary/${id}`, libraryData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -67,7 +67,7 @@ export const deleteLibrary = createAsyncThunk(
     'library/deleteLibrary',
     async (id, thunkAPI) => {
         try {
-            const response = await axios.delete(`http://localhost:5000/api/library/deleteLibrary/${id}`, {
+            const response = await axios.delete(`${API_URL}/api/library/deleteLibrary/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

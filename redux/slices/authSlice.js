@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const login = createAsyncThunk(
     'auth/login',
     async (credentials, thunkAPI) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', credentials);
+            const response = await axios.post(`${API_URL}/api/auth/login`, credentials);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('role', response.data.user.role);
             localStorage.setItem('isAuthenticated', 'true');
